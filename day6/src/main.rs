@@ -1,4 +1,4 @@
-use std::{fs::File, io::{self, BufRead}, path::Path};
+use std::{fs::File, io::{self, BufRead}, path::Path, collections::HashSet};
 use std::collections::VecDeque;
 
 fn main() {
@@ -59,16 +59,11 @@ fn main() {
 }
 
 fn contains_duplicates(vec: VecDeque<u8>) -> bool {
-    let mut set = std::collections::HashSet::new();
+    let mut seen = HashSet::new();
 
-    for char in vec {
-        if set.contains(&char) {
-            return true;
-        } else {
-            set.insert(char);
-        }
-    }
-    false
+    vec
+        .iter()
+        .any(|&c| !seen.insert(c))
 }
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>

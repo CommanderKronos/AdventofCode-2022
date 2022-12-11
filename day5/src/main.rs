@@ -18,14 +18,6 @@ impl<T> Stack<T> {
         self.stack.push(item)
     }
 
-    fn is_empty(&self) -> bool {
-        self.stack.is_empty()
-    }
-
-    fn length(&self) -> usize {
-        self.stack.len()
-    }
-
     fn peek(&self) -> Option<&T> {
         self.stack.last()
     }
